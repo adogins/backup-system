@@ -35,7 +35,7 @@ def backup_file(path):
     conn = get_connection()
     cursor = conn.cursor()
 
-    # Inser or update file metadata in files table
+    # Insert/update file metadata in files table
     cursor.execute("""
         INSERT INTO files (file_path, file_hash, last_modified, last_backup)
         VALUES (%s, %s, NOW(), NOW())
