@@ -42,15 +42,15 @@ cd backup-system
 
 ### 2. Create a .env file
 
-# Folder to watch
+#### Folder to watch
 
 WATCH_FOLDER=/path/to/watch
 
-# Folder to backups
+#### Folder to backups
 
 BACKUP_FOLDER=/path/to/backup
 
-# MYSQL credentials
+#### MYSQL credentials
 
 MYSQL_USER=backup_user
 MYSQL_PASSWORD=backup_pass
