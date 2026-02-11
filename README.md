@@ -17,14 +17,12 @@ A simple Python-based backup system that automatically backs up files from a spe
 ## **Folder Structure**
 
 backup-system/
-│
 ├─ src/
 │ ├─ backup.py # Logic to copy files and store metadata
 │ ├─ scanner.py # Main script to scan the watch folder
 │ ├─ hasher.py # Computes SHA-256 hashes
 │ ├─ db.py # MySQL database connection
 │ └─ config.py # Configuration (paths & DB)
-│
 ├─ .env # Environment variables (ignored by git)
 ├─ requirements.txt # Python dependencies
 ├─ docker-compose.yml # Docker configuration for MySQL
@@ -35,12 +33,12 @@ backup-system/
 
 ## **Setup Instructions**
 
-### 1 Clone the repository
+### 1. Clone the repository
 
 git clone <your-repo-url>
 cd backup-system
 
-### 2 Create a .env file
+### 2. Create a .env file
 
 # Folder to watch
 
@@ -56,17 +54,17 @@ MYSQL_USER=backup_user
 MYSQL_PASSWORD=backup_pass
 MYSQL_DATABASE=backup_system
 
-### 3 Install dependencies
+### 3. Install dependencies
 
 pip install -r requirements.txt
 of
 pip3 install -r requirements.txt
 
-### 4 Setup MYSQL with Docker
+### 4. Setup MYSQL with Docker
 
 docker-compose up -d
 
-### 5 Run the backup system
+### 5. Run the backup system
 
 python src/scanner.py
 or
