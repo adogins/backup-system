@@ -11,6 +11,7 @@ A simple Python-based backup system that automatically backs up files from a spe
 - Calculates SHA-256 hashed to detect changes
 - Stores file metadata and backup history in MySQL
 - Includes Dockerized MySQL for easy setup
+- Makefile for running and testing
 - Fully tested with 'pytest'
 
 ---
@@ -22,26 +23,28 @@ backup-system/
 │
 ├── src/
 │   └── backup_system/
-│       ├── __init__.py          # Makes this a Python package
-│       ├── backup.py            # Logic to copy files and store metadata
-│       ├── scanner.py           # Scans the watch folder and triggers backups
-│       ├── hasher.py            # Computes SHA-256 hashes
-│       ├── db.py                # MySQL database connection helpers
-│       └── config.py            # Configuration (paths & DB settings)
+│       ├── __init__.py
+│       ├── backup.py
+│       ├── scanner.py
+│       ├── hasher.py
+│       ├── db.py
+│       └── config.py
 │
 ├── tests/
 │   ├── __init__.py
-│   ├── conftest.py              # Shared pytest fixtures (e.g., fake DB)
+│   ├── conftest.py
 │   ├── test_hash.py
 │   ├── test_backup.py
 │   └── test_scanner.py
 │
-├── pytest.ini                   # Ensures pytest can import from src/
-├── .env                         # Environment variables (ignored by git)
-├── requirements.txt             # Python dependencies
-├── docker-compose.yml           # Dockerized MySQL setup
-├── init.sql                     # SQL schema for database
+├── Makefile
+├── pytest.ini
+├── requirements.txt
+├── docker-compose.yml
+├── init.sql
+├── .env
 └── README.md
+
 ```
 
 ---
@@ -81,6 +84,8 @@ docker-compose up -d
 
 ### 5. Run the backup system
 
-python src/scanner.py
-or
-python3 src/scanner.py
+make run
+
+### 6. Run the tests
+
+make test
