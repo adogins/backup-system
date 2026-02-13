@@ -1,34 +1,50 @@
 # Backup System
 
-A simple Python-based backup system that automatically backs up files from a specified folder, calculates file hashed, adn stores metadata in a MYSQL database. Supports versioning of files.
+A simple Python-based backup system that automatically backs up files from a specified folder, calculates file hashed, adn stores metadata in a MYSQL database. Supports versioning of files and includes tests.
 
 ---
 
 ## **Features**
 
-- Watches a folder for files (manual scans currently)
+- Scans a watch folder for new or modified files (manual scans for now)
 - Creates timestamped backups of files
-- Calculates SHA-256 hashed to track changes
-- Stored file metadata and backup history in MySQL
-- Supports Dockerized MySQL for easy setup
+- Calculates SHA-256 hashed to detect changes
+- Stores file metadata and backup history in MySQL
+- Includes Dockerized MySQL for easy setup
+- Makefile for running and testing
+- Fully tested with 'pytest'
 
 ---
 
-## **Folder Structure**
+## **Project Structure**
 
 ```
 backup-system/
-├─ src/
-│ ├─ backup.py          # Logic to copy files and store metadata
-│ ├─ scanner.py         # Main script to scan the watch folder
-│ ├─ hasher.py          # Computes SHA-256 hashes
-│ ├─ db.py              # MySQL database connection
-│ └─ config.py          # Configuration (paths & DB)
-├─ .env                 # Environment variables (ignored by git)
-├─ requirements.txt     # Python dependencies
-├─ docker-compose.yml   # Docker configuration for MySQL
-├─ init.sql             # SQL schema for database
-└─ README.md
+│
+├── src/
+│   └── backup_system/
+│       ├── __init__.py
+│       ├── backup.py
+│       ├── scanner.py
+│       ├── hasher.py
+│       ├── db.py
+│       └── config.py
+│
+├── tests/
+│   ├── __init__.py
+│   ├── conftest.py
+│   ├── test_hash.py
+│   ├── test_backup.py
+│   └── test_scanner.py
+│
+├── Makefile
+├── pytest.ini
+├── requirements.txt
+├── docker-compose.yml
+├── init.sql
+├── .env
+└── README.md
+
 ```
 
 ---
@@ -59,7 +75,7 @@ MYSQL_DATABASE=backup_system
 ### 3. Install dependencies
 
 pip install -r requirements.txt
-of
+or
 pip3 install -r requirements.txt
 
 ### 4. Setup MYSQL with Docker
@@ -68,6 +84,8 @@ docker-compose up -d
 
 ### 5. Run the backup system
 
-python src/scanner.py
-or
-python3 src/scanner.py
+make run
+
+### 6. Run the tests
+
+make test
