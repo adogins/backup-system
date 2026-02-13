@@ -1,6 +1,6 @@
 # Backup System
 
-A simple Python-based backup system that automatically backs up files from a specified folder, calculates file hashed, adn stores metadata in a MYSQL database. Supports versioning of files and includes tests.
+A simple Python-based backup system that automatically backs up files from a specified folder, calculates file hashed, and stores metadata in a MYSQL database. Supports versioning of files and includes tests.
 
 ---
 
