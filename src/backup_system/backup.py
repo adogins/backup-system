@@ -20,7 +20,7 @@ def backup_file(path):
     name = os.path.basename(path)
 
     # Get a timestamp for the backup file
-    ts = datetime.now().strftime("%Y%m%d%H%M%S")
+    ts = datetime.now().strftime("%m%d%Y%H%M%S")
 
     # Make a destination path in the backup folder
     dest = os.path.join(BACKUP_FOLDER, f"{ts}_{name}")
@@ -35,18 +35,30 @@ def backup_file(path):
     conn = get_connection()
     cursor = conn.cursor()
 
-    # Inser or update file metadata in files table
+    # Insert or update file metadata in files table
     cursor.execute("""
         INSERT INTO files (file_path, file_hash, last_modified, last_backup)
         VALUES (%s, %s, NOW(), NOW())
         ON DUPLICATE KEY UPDATE file_hash=%s, last_backup=NOW()
     """, (path, file_hash, file_hash))
 
-    # Get the primary key id of the file to link in file_versions table
+    # Get file_id
     cursor.execute("SELECT id FROM files WHERE file_path=%s", (path,))
     file_id = cursor.fetchone()[0]
 
-    # Record the backup in file_versions
+    # Determine version number
+    cursor.execute("SELECT COUNT(*) FROM file_versions WHERE file_id=%s", (file_id,))
+    version = cursor.fetchone()[0] + 1
+
+    # build backup filename: <filename>_<MMDDYYYY>_v<version>
+    date_str = datetime.now().strftime("%m%d%Y")
+    backup_name = f"{name}_{date_str}_v{version}"
+    dest = os.path.join(BACKUP_FOLDER, backup_name)
+
+    # Copy file to backup folder
+    shutil.copy2(path, dest)
+
+    # Insert version record
     cursor.execute("""
         INSERT INTO file_versions (file_id, backup_path, file_hash, backed_up_at)
         VALUES (%s, %s, %s, NOW())
