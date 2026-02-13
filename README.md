@@ -1,20 +1,21 @@
 # Backup System
 
-A simple Python-based backup system that automatically backs up files from a specified folder, calculates file hashed, adn stores metadata in a MYSQL database. Supports versioning of files.
+A simple Python-based backup system that automatically backs up files from a specified folder, calculates file hashed, adn stores metadata in a MYSQL database. Supports versioning of files and includes tests.
 
 ---
 
 ## **Features**
 
-- Watches a folder for files (manual scans currently)
+- Scans a watch folder for new or modified files (manual scans for now)
 - Creates timestamped backups of files
-- Calculates SHA-256 hashed to track changes
-- Stored file metadata and backup history in MySQL
-- Supports Dockerized MySQL for easy setup
+- Calculates SHA-256 hashed to detect changes
+- Stores file metadata and backup history in MySQL
+- Includes Dockerized MySQL for easy setup
+- Fully tested with 'pytest'
 
 ---
 
-## **Folder Structure**
+## **Project Structure**
 
 ```
 backup-system/
@@ -71,7 +72,7 @@ MYSQL_DATABASE=backup_system
 ### 3. Install dependencies
 
 pip install -r requirements.txt
-of
+or
 pip3 install -r requirements.txt
 
 ### 4. Setup MYSQL with Docker
