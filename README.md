@@ -66,7 +66,7 @@ WATCH_FOLDER=/path/to/watch
 
 BACKUP_FOLDER=/path/to/backup
 
-#### MYSQL credentials
+#### MySQL credentials
 
 MYSQL_USER=backup_user
 MYSQL_PASSWORD=backup_pass
