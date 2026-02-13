@@ -1,5 +1,5 @@
 import mysql.connector
-from config import DB_CONFIG
+from backup_system.config import DB_CONFIG
 
 # Create a return a new connection to the database
 def get_connection():

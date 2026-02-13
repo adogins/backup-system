@@ -1,6 +1,6 @@
 import os
-from backup import backup_file
-from config import WATCH_FOLDER
+from backup_system.backup import backup_file
+from backup_system.config import WATCH_FOLDER
 
 def scan():
     """

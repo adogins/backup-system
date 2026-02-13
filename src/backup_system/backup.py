@@ -1,8 +1,8 @@
 import os, shutil
 from datetime import datetime
-from db import get_connection
-from hash import hash_file
-from config import BACKUP_FOLDER
+from backup_system.hash import hash_file
+from backup_system.db import get_connection
+from backup_system.config import BACKUP_FOLDER
 
 def backup_file(path):
     """
@@ -35,7 +35,7 @@ def backup_file(path):
     conn = get_connection()
     cursor = conn.cursor()
 
-    # Insert/update file metadata in files table
+    # Inser or update file metadata in files table
     cursor.execute("""
         INSERT INTO files (file_path, file_hash, last_modified, last_backup)
         VALUES (%s, %s, NOW(), NOW())
