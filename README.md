@@ -18,17 +18,29 @@ A simple Python-based backup system that automatically backs up files from a spe
 
 ```
 backup-system/
-├─ src/
-│ ├─ backup.py          # Logic to copy files and store metadata
-│ ├─ scanner.py         # Main script to scan the watch folder
-│ ├─ hasher.py          # Computes SHA-256 hashes
-│ ├─ db.py              # MySQL database connection
-│ └─ config.py          # Configuration (paths & DB)
-├─ .env                 # Environment variables (ignored by git)
-├─ requirements.txt     # Python dependencies
-├─ docker-compose.yml   # Docker configuration for MySQL
-├─ init.sql             # SQL schema for database
-└─ README.md
+│
+├── src/
+│   └── backup_system/
+│       ├── __init__.py          # Makes this a Python package
+│       ├── backup.py            # Logic to copy files and store metadata
+│       ├── scanner.py           # Scans the watch folder and triggers backups
+│       ├── hasher.py            # Computes SHA-256 hashes
+│       ├── db.py                # MySQL database connection helpers
+│       └── config.py            # Configuration (paths & DB settings)
+│
+├── tests/
+│   ├── __init__.py
+│   ├── conftest.py              # Shared pytest fixtures (e.g., fake DB)
+│   ├── test_hash.py
+│   ├── test_backup.py
+│   └── test_scanner.py
+│
+├── pytest.ini                   # Ensures pytest can import from src/
+├── .env                         # Environment variables (ignored by git)
+├── requirements.txt             # Python dependencies
+├── docker-compose.yml           # Dockerized MySQL setup
+├── init.sql                     # SQL schema for database
+└── README.md
 ```
 
 ---
