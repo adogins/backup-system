@@ -1,6 +1,6 @@
 # Backup System
 
-A simple Python-based backup system that automatically backs up files from a specified folder, calculates file hashed, and stores metadata in a MYSQL database. Supports versioning of files and includes tests.
+A simple Python-based backup system that automatically backs up files from a specified folder, calculates file hashed, and stores metadata in a MySQL database. Supports versioning of files and includes tests.
 
 ---
 
@@ -78,7 +78,7 @@ pip install -r requirements.txt
 or
 pip3 install -r requirements.txt
 
-### 4. Setup MYSQL with Docker
+### 4. Setup MySQL with Docker
 
 docker-compose up -d
 
